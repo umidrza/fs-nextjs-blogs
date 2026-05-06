@@ -1,10 +1,21 @@
 import Link from "next/link"
-import { getBlogs } from "../services/blogs"
+import blogService from "../services/blogs"
 
-const Blogs = () => {
-  const blogs = getBlogs()
+const Blogs = async ({ searchParams }: { searchParams: Promise<{ filter?: string }> }) => {
+  const allBlogs = await blogService.getBlogs()
+  const { filter } = await searchParams
+
+  const blogs = filter
+    ? allBlogs.filter(blog => blog.title.toLowerCase().includes(filter.toLowerCase()))
+    : allBlogs
+
   return (
     <div>
+      <form>
+        <input type="text" name="filter" placeholder="Filter by title" defaultValue={filter} />
+        <button type="submit">Apply Filter</button>
+      </form>
+
       <h2>Blogs</h2>
       <ul>
         {blogs.map(blog => (
@@ -19,4 +30,5 @@ const Blogs = () => {
     </div>
   )
 }
+
 export default Blogs
