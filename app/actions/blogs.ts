@@ -22,3 +22,10 @@ export const likeBlog = async (formData: FormData) => {
     revalidatePath(`/blogs/${id}`)
     redirect(`/blogs/${id}`)
 }
+
+export const deleteBlog = async (formData: FormData) => {
+    const id = formData.get("id") as string
+    await blogService.deleteBlog(Number(id))
+    revalidatePath("/blogs")
+    redirect("/blogs")
+}

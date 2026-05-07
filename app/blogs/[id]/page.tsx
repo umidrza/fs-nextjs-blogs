@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation"
 import blogService from "../../services/blogs"
-import { likeBlog } from "../../actions/blogs"
+import { deleteBlog, likeBlog } from "../../actions/blogs"
 
 const BlogPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params
-  const blog = blogService.getBlogById(Number(id))
+  const blog = await blogService.getBlogById(Number(id))
 
   if (!blog) {
     notFound()
@@ -19,6 +19,10 @@ const BlogPage = async ({ params }: { params: { id: string } }) => {
       <form action={likeBlog}>
         <input type="hidden" name="id" value={blog.id} />
         <button type="submit">Like</button>
+      </form>
+      <form action={deleteBlog}>
+        <input type="hidden" name="id" value={blog.id} />
+        <button type="submit">Delete</button>
       </form>
     </div>
   )
