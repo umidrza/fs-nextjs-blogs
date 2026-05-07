@@ -8,7 +8,8 @@ export const createBlog = async (formData: FormData) => {
     const title = formData.get("title") as string
     const author = formData.get("author") as string
     const url = formData.get("url") as string
-    await blogService.addBlog(title, author, url)
+    const userId = Number(formData.get("userId") as string)
+    await blogService.addBlog(title, author, url, userId)
 
     revalidatePath("/blogs")
     redirect("/blogs")

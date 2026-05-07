@@ -12,8 +12,10 @@ const getBlogById = (id: number) => {
   })
 }
 
-const addBlog = (title: string, author: string, url: string) => {
-  return db.insert(blogs).values({ title, author, url, likes: 0 })
+const addBlog = (title: string, author: string, url: string, userId: number) => {
+  return db.insert(blogs)
+    .values({ title, author, url, likes: 0, userId })
+    .returning()
 }
 
 const likeBlog = async (id: number) => {
