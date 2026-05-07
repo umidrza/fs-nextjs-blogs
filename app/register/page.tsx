@@ -14,6 +14,7 @@ const initialState = {
     name: "",
     username: "",
     password: "",
+    passwordConfirm: ""
   }
 }
 
@@ -48,7 +49,7 @@ export default function RegisterPage() {
         <div>
           <label>
             Password Confirm
-            <input type="password" name="password-confirm"/>
+            <input type="password" name="passwordConfirm" defaultValue={state.values?.passwordConfirm}/>
           </label>
           {state.errors?.passwordConfirm && <p style={{ color: "red" }}>{state.errors.passwordConfirm}</p>}
         </div>

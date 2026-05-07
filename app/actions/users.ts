@@ -39,7 +39,7 @@ export const registerUser = async (prevState: { errors: Record<string, string> }
   if (Object.keys(errors).length > 0) {
     return {
       errors,
-      values: { username, name, password }
+      values: { username, name, password, passwordConfirm }
     }
   }
 
