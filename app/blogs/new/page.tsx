@@ -20,13 +20,13 @@ const initialState = {
 }
 
 const inputStyles =
-  "rounded-md border border-gray-300 px-3 py-2 text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+  "rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
   
 const labelStyles =
-  "mb-1.5 text-sm font-medium text-gray-700"
+  "text-sm font-semibold text-slate-700"
 
 const errorStyles =
-  "mt-1 text-sm font-medium text-red-500"
+  "mt-1 text-sm text-rose-600"
 
 const NewBlog = () => {
   const [state, formAction] = useActionState(createBlog, initialState)
@@ -42,14 +42,14 @@ const NewBlog = () => {
   }, [state.success, showNotification, router])
 
   return (
-    <div className="mx-auto mt-12 max-w-lg">
-      <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+    <div className="mx-auto mt-12 max-w-lg px-4 sm:px-6">
+      <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-10 shadow-2xl shadow-slate-200/40">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950">
             Create a new blog
           </h2>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-slate-500">
             Share your thoughts with the community.
           </p>
         </div>
@@ -132,7 +132,7 @@ const NewBlog = () => {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 active:scale-[0.99]"
+            className="w-full rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 active:scale-[0.99]"
           >
             Create Blog
           </button>

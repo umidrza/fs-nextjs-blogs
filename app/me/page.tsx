@@ -22,132 +22,129 @@ const MePage = async () => {
   )
 
   return (
-    <div className="mx-auto max-w-2xl px-6 py-10">
-      <div className="rounded-2xl border bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold text-blue-500">
-          My Profile
-        </h1>
-
-        <div className="mt-4 space-y-2 text-gray-700">
-          <p>
-            <span className="font-semibold">Name:</span>{" "}
-            {user.name}
-          </p>
-
-          <p>
-            <span className="font-semibold">Username:</span>{" "}
-            {user.username}
+    <div className="mx-auto max-w-3xl px-6 py-10">
+      <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-10 shadow-2xl shadow-slate-200/50">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold tracking-tight text-slate-950">
+            My profile
+          </h1>
+          <p className="mt-3 text-sm text-slate-500">
+            Personal dashboard for your reading list and API token.
           </p>
         </div>
 
-        {/* Reading List */}
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold text-blue-500">
-            My Reading List
-          </h2>
-
-          {readingList.length === 0 ? (
-            <p className="mt-2 text-sm text-gray-500">
-              Your reading list is empty.
+        <div className="grid gap-8 rounded-3xl border border-slate-100 bg-slate-50 p-6">
+          <div className="space-y-2 text-slate-700">
+            <p>
+              <span className="font-semibold text-slate-900">Name:</span>{" "}
+              {user.name}
             </p>
-          ) : (
-            <div className="mt-6 space-y-8">
+            <p>
+              <span className="font-semibold text-slate-900">Username:</span>{" "}
+              {user.username}
+            </p>
+          </div>
 
-              {/* UNREAD */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Unread
-                </h3>
-
-                {unread.length === 0 ? (
-                  <p className="mt-2 text-sm text-gray-500">
-                    No unread blogs 🎉
-                  </p>
-                ) : (
-                  <div className="mt-3 space-y-3">
-                    {unread.map((item) => (
-                      <div
-                        key={item.reading_list.id}
-                        className="flex items-start justify-between rounded-md border p-4"
-                      >
-                        <div>
-                          <h4 className="text-md font-semibold text-gray-800">
-                            {item.blogs.title}
-                          </h4>
-                          <p className="text-sm text-gray-600">
-                            {item.blogs.author}
-                          </p>
-                        </div>
-
-                        <form action={markReadingListAsRead}>
-                          <input
-                            type="hidden"
-                            name="id"
-                            value={item.reading_list.id}
-                          />
-                          <button
-                            type="submit"
-                            className="rounded-md bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-xl font-semibold text-slate-900">
+                Reading list
+              </h2>
+              {readingList.length === 0 ? (
+                <p className="mt-3 rounded-3xl border border-dashed border-slate-200 bg-white px-5 py-4 text-sm text-slate-600">
+                  Your reading list is empty.
+                </p>
+              ) : (
+                <div className="mt-4 space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      Unread
+                    </h3>
+                    {unread.length === 0 ? (
+                      <p className="mt-3 text-sm text-slate-500">
+                        No unread blogs yet.
+                      </p>
+                    ) : (
+                      <div className="mt-4 space-y-4">
+                        {unread.map((item) => (
+                          <div
+                            key={item.reading_list.id}
+                            className="flex flex-col gap-4 rounded-[1.5rem] border border-slate-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between"
                           >
-                            Mark as read
-                          </button>
-                        </form>
+                            <div>
+                              <h4 className="text-lg font-semibold text-slate-900">
+                                {item.blogs.title}
+                              </h4>
+                              <p className="text-sm text-slate-500">
+                                {item.blogs.author}
+                              </p>
+                            </div>
+                            <form action={markReadingListAsRead}>
+                              <input
+                                type="hidden"
+                                name="id"
+                                value={item.reading_list.id}
+                              />
+                              <button
+                                type="submit"
+                                className="rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
+                              >
+                                Mark as read
+                              </button>
+                            </form>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
-                )}
-              </div>
 
-              {/* READ */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Read
-                </h3>
-
-                {read.length === 0 ? (
-                  <p className="mt-2 text-sm text-gray-500">
-                    No read blogs yet.
-                  </p>
-                ) : (
-                  <div className="mt-3 space-y-3">
-                    {read.map((item) => (
-                      <div
-                        key={item.reading_list.id}
-                        className="rounded-md border bg-gray-50 p-4"
-                      >
-                        <h4 className="text-md font-semibold text-gray-800">
-                          {item.blogs.title}
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          {item.blogs.author}
-                        </p>
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      Read
+                    </h3>
+                    {read.length === 0 ? (
+                      <p className="mt-3 text-sm text-slate-500">
+                        No read blogs yet.
+                      </p>
+                    ) : (
+                      <div className="mt-4 space-y-4">
+                        {read.map((item) => (
+                          <div
+                            key={item.reading_list.id}
+                            className="rounded-[1.5rem] border border-slate-200 bg-slate-100 p-5"
+                          >
+                            <h4 className="text-lg font-semibold text-slate-900">
+                              {item.blogs.title}
+                            </h4>
+                            <p className="text-sm text-slate-500">
+                              {item.blogs.author}
+                            </p>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
-                )}
+                </div>
+              )}
+            </div>
+
+            <div>
+              <h2 className="text-xl font-semibold text-slate-900">
+                API token
+              </h2>
+              {user.token ? (
+                <p className="mt-3 break-all rounded-3xl bg-slate-950/5 px-5 py-4 text-sm text-blue-700">
+                  {user.token}
+                </p>
+              ) : (
+                <p className="mt-3 text-sm text-slate-500">
+                  No token generated yet.
+                </p>
+              )}
+              <div className="mt-4">
+                <TokenButton />
               </div>
             </div>
-          )}
-        </div>
-
-        {/* Token */}
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold text-blue-500">
-            API Token
-          </h2>
-
-          {user.token ? (
-            <p className="mt-2 break-all rounded-md bg-gray-100 p-3 text-sm text-blue-500">
-              {user.token}
-            </p>
-          ) : (
-            <p className="mt-2 text-sm text-blue-400">
-              No token generated yet.
-            </p>
-          )}
-
-          <div className="mt-4">
-            <TokenButton />
           </div>
         </div>
       </div>

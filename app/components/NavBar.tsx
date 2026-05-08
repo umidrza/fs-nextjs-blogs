@@ -7,15 +7,15 @@ export default function NavBar() {
   const { data: session } = useSession()
 
   return (
-    <nav className="border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
-      <div className="mx-auto flex max-w-6xl items-center gap-3">
-        <div className="flex items-center gap-2">
+    <nav className="sticky top-0 z-40 border-b border-slate-200 bg-slate-950/95 px-6 py-4 backdrop-blur-xl shadow-sm shadow-slate-900/10">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/blogs">Blogs</NavLink>
           <NavLink href="/users">Users</NavLink>
         </div>
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex flex-wrap items-center gap-3">
           {session ? (
             <>
               <NavLink href="/blogs/new">Create Blog</NavLink>
@@ -23,7 +23,7 @@ export default function NavBar() {
 
               <button
                 onClick={() => signOut()}
-                className="rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
+                className="rounded-full bg-slate-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-600"
               >
                 Logout
               </button>

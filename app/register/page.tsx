@@ -19,21 +19,21 @@ const initialState = {
 }
 
 const inputStyles =
-  "rounded-md border border-gray-300 px-3 py-2 text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+  "rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
   
 const labelStyles =
-  "mb-1 text-sm font-medium text-gray-700"
+  "text-sm font-medium text-slate-700"
 
 const errorStyles =
-  "mt-1 text-sm text-red-500"
+  "mt-1 text-sm text-rose-600"
 
 export default function RegisterPage() {
   const [state, formAction] = useActionState(registerUser, initialState)
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-lg rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-        <h2 className="mb-6 text-3xl font-bold text-gray-900">
+    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10">
+      <div className="w-full max-w-lg rounded-[2rem] border border-slate-200 bg-white p-10 shadow-2xl shadow-slate-200/60">
+        <h2 className="mb-6 text-3xl font-bold text-slate-950">
           Register
         </h2>
 
@@ -100,7 +100,7 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            className="w-full rounded-md bg-blue-600 px-4 py-2 font-semibold text-white transition hover:bg-blue-700"
+            className="w-full rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
           >
             Register
           </button>
