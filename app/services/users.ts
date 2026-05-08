@@ -22,10 +22,18 @@ export const getUserByUsername = async (username: string) => {
     })
 }
 
+export const getUserByToken = async (token: string) => {
+    return db.query.users.findFirst({
+        where: eq(users.token, token),
+        with: { blogs: true }
+    })
+}
+
 const userService = {
     getUsers,
     getUserById,
     getUserByUsername,
+    getUserByToken
 }
 
 export default userService
