@@ -36,14 +36,15 @@ export const createBlog = async (prevState: { errors: Record<string, string> }, 
     if (Object.keys(errors).length > 0) {
         return {
             errors,
-            values: { title, author, url }
+            values: { title, author, url },
+            success: false
         }
     }
 
     await blogService.addBlog(title, author, url)
 
     revalidatePath("/blogs")
-    redirect("/blogs")
+    return { errors, values: { title, author, url }, success: true }
 }
 
 export const likeBlog = async (formData: FormData) => {

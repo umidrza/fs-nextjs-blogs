@@ -1,33 +1,47 @@
 "use client"
 
-import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
+import NavLink from "./NavLink"
 
 export default function NavBar() {
-    const { data: session } = useSession()
+  const { data: session } = useSession()
 
-    return (
-        <nav>
-            <Link href="/">home</Link>
-            {" | "}
-            <Link href="/blogs">blogs</Link>
-            {" | "}
-            <Link href="/users">users</Link>
-            {" | "}
-            {session ? (
-                <>
-                    <Link href="/blogs/new">create new</Link>
-                    {" | "}
-                    <em>{session.user?.name} logged in</em>{" "}
-                    <button onClick={() => signOut()}>logout</button>
-                </>
-            ) : (
-                <>
-                    <Link href="/login">login</Link>
-                    {" | "}
-                    <Link href="/register">register</Link>
-                </>
-            )}
-        </nav>
-    )
+  return (
+    <nav className="border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
+      <div className="mx-auto flex max-w-6xl items-center gap-3">
+        <div className="flex items-center gap-2">
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/blogs">Blogs</NavLink>
+          <NavLink href="/users">Users</NavLink>
+        </div>
+
+        <div className="ml-auto flex items-center gap-3">
+          {session ? (
+            <>
+              <NavLink href="/blogs/new">Create Blog</NavLink>
+
+              <span className="text-sm text-gray-600">
+                Signed in as{" "}
+                <span className="font-medium text-gray-800">
+                  {session.user?.name}
+                </span>
+              </span>
+
+              <button
+                onClick={() => signOut()}
+                className="rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink href="/login">Login</NavLink>
+              <NavLink href="/register">Register</NavLink>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  )
 }
