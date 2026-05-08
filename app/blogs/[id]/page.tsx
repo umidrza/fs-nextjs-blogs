@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import blogService from "../../services/blogs"
 import { deleteBlog, likeBlog } from "../../actions/blogs"
+import { addToReadingList } from "../../actions/readingList"
 
 const BlogPage = async ({
   params,
@@ -65,6 +66,17 @@ const BlogPage = async ({
               className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 active:scale-[0.98]"
             >
               👍 Like
+            </button>
+          </form>
+
+          <form action={addToReadingList}>
+            <input type="hidden" name="blogId" value={blog.id} />
+
+            <button
+              type="submit"
+              className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 active:scale-[0.98]"
+            >
+              Add to reading list
             </button>
           </form>
 

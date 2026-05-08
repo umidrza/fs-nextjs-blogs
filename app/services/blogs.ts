@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm"
 import { db } from "../../db"
 import { blogs } from "../../db/schema"
 import { getCurrentUser } from "./session"
+import readingListService from "./readingLists"
 
 const getBlogs = () => {
   return db.query.blogs.findMany()
@@ -19,9 +20,13 @@ const addBlog = async (title: string, author: string, url: string) => {
     throw new Error("Not logged in")
   }
 
-  return db.insert(blogs)
+  const blog = await db.insert(blogs)
     .values({ title, author, url, likes: 0, userId: user.id })
     .returning()
+
+  await readingListService.addToReadingList(user.id, blog[0].id);
+
+  return blog
 }
 
 const likeBlog = async (id: number) => {

@@ -1,6 +1,6 @@
 import { db } from "../../db"
 import { eq } from "drizzle-orm"
-import { users } from "../../db/schema"
+import { users, readingList, blogs } from "../../db/schema"
 
 export const getUsers = async () => {
     return db.query.users.findMany({
@@ -27,6 +27,14 @@ export const getUserByToken = async (token: string) => {
         where: eq(users.token, token),
         with: { blogs: true }
     })
+}
+
+export const getReadingListByUserId = async (userId: number) => {
+  return db
+    .select()
+    .from(readingList)
+    .innerJoin(blogs, eq(readingList.blogId, blogs.id))
+    .where(eq(readingList.userId, userId))
 }
 
 const userService = {
