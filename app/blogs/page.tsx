@@ -17,7 +17,7 @@ const Blogs = async ({
     : allBlogs
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10" data-testid="blogs-list">
+    <div className="mx-auto max-w-3xl px-6 py-10">
       <div className="mb-8 flex flex-col gap-4 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200/50 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950">
@@ -50,7 +50,7 @@ const Blogs = async ({
 
       <Suspense fallback={<p className="text-slate-600">Loading blogs...</p>}>
 
-      <ul className="space-y-4">
+      <ul className="space-y-4" data-testid="blogs-list">
         {blogs.map((blog) => (
           <li
             key={blog.id}

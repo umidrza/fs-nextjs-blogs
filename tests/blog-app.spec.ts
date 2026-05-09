@@ -278,6 +278,8 @@ test.describe("Blog Application", () => {
       await page.getByTestId("filter-input").fill("React")
       await page.getByTestId("search-button").click()
 
+      await page.waitForTimeout(500)
+
       // Only React blogs should be visible
       await expect(blogsList).toContainText("React Tutorial")
       await expect(blogsList).toContainText("React Advanced")
@@ -341,6 +343,7 @@ test.describe("Blog Application", () => {
       await page.waitForSelector('[data-testid="add-to-reading-list-button"]')
 
       await page.getByTestId("add-to-reading-list-button").click()
+      await page.waitForTimeout(500)
 
       // Navigate to me page
       await page.goto("/me")
