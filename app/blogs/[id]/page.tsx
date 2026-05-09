@@ -16,14 +16,14 @@ const BlogPage = async ({
   }
 
   return (
-    <div className="mx-auto mt-10 max-w-3xl px-6">
+    <div className="mx-auto mt-10 max-w-3xl px-6" data-testid="blog-detail">
       <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-10 shadow-2xl shadow-slate-200/40">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold tracking-tight text-slate-950">
+          <h1 className="text-4xl font-bold tracking-tight text-slate-950" data-testid="blog-title">
             {blog.title}
           </h1>
 
-          <p className="mt-3 text-lg text-slate-600">
+          <p className="mt-3 text-lg text-slate-600" data-testid="blog-author">
             By{" "}
             <span className="font-medium text-slate-900">
               {blog.author}
@@ -31,7 +31,7 @@ const BlogPage = async ({
           </p>
         </div>
 
-        <div className="space-y-4 text-slate-700">
+        <div className="space-y-4 text-slate-700" data-testid="blog-url">
           <div>
             <span className="font-semibold text-slate-900">
               URL:
@@ -46,7 +46,7 @@ const BlogPage = async ({
             </a>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" data-testid="blog-likes">
             <span className="font-semibold text-slate-900">
               Likes:
             </span>
@@ -73,6 +73,7 @@ const BlogPage = async ({
             <input type="hidden" name="blogId" value={blog.id} />
 
             <button
+              data-testid="add-to-reading-list-button"
               type="submit"
               className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 active:scale-[0.98]"
             >

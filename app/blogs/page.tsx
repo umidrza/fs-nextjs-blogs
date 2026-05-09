@@ -17,7 +17,7 @@ const Blogs = async ({
     : allBlogs
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10">
+    <div className="mx-auto max-w-3xl px-6 py-10" data-testid="blogs-list">
       <div className="mb-8 flex flex-col gap-4 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200/50 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950">
@@ -30,6 +30,7 @@ const Blogs = async ({
 
         <form className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <input
+            data-testid="filter-input"
             type="text"
             name="filter"
             placeholder="Filter by title..."
@@ -38,6 +39,7 @@ const Blogs = async ({
           />
 
           <button
+            data-testid="search-button"
             type="submit"
             className="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
           >
@@ -47,10 +49,6 @@ const Blogs = async ({
       </div>
 
       <Suspense fallback={<p className="text-slate-600">Loading blogs...</p>}>
-
-      <h2 className="mb-6 text-3xl font-bold text-slate-950">
-        Blogs
-      </h2>
 
       <ul className="space-y-4">
         {blogs.map((blog) => (
@@ -68,6 +66,10 @@ const Blogs = async ({
 
               <p className="mt-2 text-sm text-slate-500">
                 By {blog.author}
+              </p>
+
+              <p className="mt-2 text-sm text-slate-400">
+                {blog.likes} likes
               </p>
             </Link>
           </li>

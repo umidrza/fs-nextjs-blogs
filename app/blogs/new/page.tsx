@@ -132,6 +132,7 @@ const NewBlog = () => {
 
           <button
             type="submit"
+            data-testid="create-blog-button"
             className="w-full rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 active:scale-[0.99]"
           >
             Create Blog

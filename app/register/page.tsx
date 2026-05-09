@@ -19,10 +19,10 @@ const initialState = {
 }
 
 const inputStyles =
-  "rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-  
+  "mt-1 rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+
 const labelStyles =
-  "text-sm font-medium text-slate-700"
+  "flex flex-col text-sm font-medium text-slate-700"
 
 const errorStyles =
   "mt-1 text-sm text-rose-600"
@@ -39,8 +39,8 @@ export default function RegisterPage() {
 
         <form action={formAction} className="space-y-5">
           {/* Username */}
-          <div className="flex flex-col">
-            <label className={labelStyles}>Username</label>
+          <label className={labelStyles}>
+            Username
             <input
               type="text"
               name="username"
@@ -48,13 +48,13 @@ export default function RegisterPage() {
               className={inputStyles}
             />
             {state.errors?.username && (
-              <p className={errorStyles}>{state.errors.username}</p>
+              <p className={errorStyles} data-testid="username-error">{state.errors.username}</p>
             )}
-          </div>
+          </label>
 
           {/* Name */}
-          <div className="flex flex-col">
-            <label className={labelStyles}>Name</label>
+          <label className={labelStyles}>
+            Name
             <input
               type="text"
               name="name"
@@ -62,13 +62,13 @@ export default function RegisterPage() {
               className={inputStyles}
             />
             {state.errors?.name && (
-              <p className={errorStyles}>{state.errors.name}</p>
+              <p className={errorStyles} data-testid="name-error">{state.errors.name}</p>
             )}
-          </div>
+          </label>
 
           {/* Password */}
-          <div className="flex flex-col">
-            <label className={labelStyles}>Password</label>
+          <label className={labelStyles}>
+            Password
             <input
               type="password"
               name="password"
@@ -76,15 +76,13 @@ export default function RegisterPage() {
               className={inputStyles}
             />
             {state.errors?.password && (
-              <p className={errorStyles}>{state.errors.password}</p>
+              <p className={errorStyles} data-testid="password-error">{state.errors.password}</p>
             )}
-          </div>
+          </label>
 
           {/* Password Confirm */}
-          <div className="flex flex-col">
-            <label className={labelStyles}>
-              Confirm Password
-            </label>
+          <label className={labelStyles}>
+            Confirm Password
             <input
               type="password"
               name="passwordConfirm"
@@ -92,14 +90,15 @@ export default function RegisterPage() {
               className={inputStyles}
             />
             {state.errors?.passwordConfirm && (
-              <p className={errorStyles}>
+              <p className={errorStyles} data-testid="passwordConfirm-error">
                 {state.errors.passwordConfirm}
               </p>
             )}
-          </div>
+          </label>
 
           <button
             type="submit"
+            data-testid="register-button"
             className="w-full rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
           >
             Register

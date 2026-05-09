@@ -11,9 +11,9 @@ export async function DELETE() {
     )
   }
 
+  await db.delete(readingList)
   await db.delete(blogs)
   await db.delete(users)
-  await db.delete(readingList)
 
   return NextResponse.json({ message: "Database reset successful" })
 }
